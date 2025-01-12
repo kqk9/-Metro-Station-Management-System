@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Station Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #303f9f;
+            --accent-color: #3949ab;
+            --hover-color: #5c6bc0;
+            --text-light: #ffffff;
+            --text-dark: #263238;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .metro-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .metro-header h1 {
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            border: none;
+        }
+
+        .table-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-body {
+            padding: 2.5rem 2rem;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .table-card:hover .card-icon {
+            transform: scale(1.1);
+            color: var(--hover-color);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .card-text {
+            color: #546e7a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .row {
+            margin-right: -1.5rem;
+            margin-left: -1.5rem;
+        }
+
+        .col-md-6 {
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .metro-header {
+                padding: 2rem 0;
+            }
+            
+            .metro-header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-body {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="metro-header">
+        <h1 class="text-center">
+            <i class="fas fa-subway me-3"></i>
+            Metro Station Management System
+        </h1>
+    </div>
+
+    <div class="container py-4">
+        <div class="row g-4">
+            <% tables.forEach(table => { %>
+                <div class="col-md-6">
+                    <a href="/<%= table.name.toLowerCase() %>" class="text-decoration-none">
+                        <div class="card table-card">
+                            <div class="card-body text-center">
+                                
+                                <%  if(table.name.toLowerCase().includes('trenler')) { %>
+                                    <i class="card-icon fas fa-train-subway"></i>
+                                <% } else if(table.name.toLowerCase().includes('bilet')) { %>
+                                    <i class="card-icon fas fa-ticket"></i>
+                                <% } else if(table.name.toLowerCase().includes('personel')) { %>
+                                    <i class="card-icon fas fa-users"></i>
+
+                                <% } else if(table.name.toLowerCase().includes('guzergah')) { %>
+                                    <i class="card-icon fas fa-route"></i>
+
+                                <% } else { %>
+                                    <i class="card-icon fas fa-database"></i>
+                                <% } %>
+                                <h5 class="card-title"><%= table.name %></h5>
+                                <p class="card-text"><%= table.description %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

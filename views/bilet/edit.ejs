@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/add.css"> <!-- Link to your custom styles -->
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1><i class="fas fa-ticket-alt me-3"></i>Edit Ticket</h1>
+                <a href="/bilet" class="btn btn-back">
+                    <i class="fas fa-arrow-left me-2"></i>Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Form Section -->
+    <div class="container py-5">
+        <div class="card mx-auto" style="max-width: 700px;">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Update Ticket Details</h2>
+                <form action="/bilet/edit/<%= ticket.BiletID %>" method="POST">
+                    <div class="mb-3">
+                        <label for="Yolcu_adi" class="form-label">Passenger Name</label>
+                        <input type="text" class="form-control search-input" id="Yolcu_adi" name="Yolcu_adi" value="<%= ticket.Yolcu_adi %>" placeholder="Enter passenger's name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Kalkis_istasyon" class="form-label">Departure Station</label>
+                        <select class="form-control search-input" id="Kalkis_istasyon" name="Kalkis_istasyon" required>
+                            <% stations.forEach(station => { %>
+                                <option value="<%= station.Baslangic_istasyon %>" <%= ticket.Kalkis_istasyon === station.Baslangic_istasyon ? 'selected' : '' %>>
+                                    <%= station.Baslangic_istasyon %>
+                                </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Varis_istasyon" class="form-label">Arrival Station</label>
+                        <select class="form-control search-input" id="Varis_istasyon" name="Varis_istasyon" required>
+                            <% stations.forEach(station => { %>
+                                <option value="<%= station.Bitis_istasyon %>" <%= ticket.Varis_istasyon === station.Bitis_istasyon ? 'selected' : '' %>>
+                                    <%= station.Bitis_istasyon %>
+                                </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Ucret" class="form-label">Price</label>
+                        <input type="number" step="0.01" class="form-control search-input" id="Ucret" name="Ucret" value="<%= ticket.Ucret %>" placeholder="Enter price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tarih" class="form-label">Date</label>
+                        <input type="date" class="form-control search-input" id="Tarih" name="Tarih" value="<%= ticket.Tarih %>" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-add">
+                            <i class="fas fa-save me-2"></i>Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-3 mt-4">
+        <p class="mb-0">&copy; 2025 Ticket Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>
